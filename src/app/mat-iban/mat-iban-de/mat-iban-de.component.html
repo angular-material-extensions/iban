@@ -1,0 +1,73 @@
+<div role="group" class="example-tel-input-container"
+     [formGroup]="parts"
+     [attr.aria-labelledby]="_formField?.getLabelId()">
+    <input class="example-tel-input-element"
+           formControlName="country" size="2"
+           maxLength="2"
+           aria-label="Country code"
+           (input)="_handleInput(parts.controls.country, checksum)"
+           #country>
+    <span class="example-tel-input-spacer">&ndash;</span>
+    <input class="example-tel-input-element"
+           formControlName="checksum"
+           maxLength="2"
+           size="2"
+           aria-label="checksum"
+           (input)="_handleInput(parts.controls.checksum, bankCodePart1)"
+           (keyup.backspace)="autoFocusPrev(parts.controls.checksum, country)"
+           #checksum>
+    <span class="example-tel-input-spacer">&ndash;</span>
+    <div formGroupName="bankCode">
+        <input class="example-tel-input-element"
+               formControlName="part1"
+               maxLength="4"
+               size="4"
+               aria-label="Subscriber number"
+               (input)="_handleInput(parts.controls.part1, bankCodePart2)"
+               (keyup.backspace)="autoFocusPrev(parts.controls.part1, checksum)"
+               #bankCodePart1>
+        <span class="example-tel-input-spacer">&ndash;</span>
+        <input class="example-tel-input-element"
+               formControlName="part2"
+               maxLength="4"
+               size="4"
+               aria-label="Subscriber number"
+               (input)="_handleInput(parts.controls.part2, bankAccountNumberPart1)"
+               (keyup.backspace)="autoFocusPrev(parts.controls.part2, bankCodePart1)"
+               #bankCodePart2>
+        <span class="example-tel-input-spacer">&ndash;</span>
+    </div>
+    <div formGroupName="bankAccountNumber">
+        <input class="example-tel-input-element"
+               formControlName="part1"
+               maxLength="4"
+               size="4"
+               aria-label="Subscriber number"
+               (input)="_handleInput(parts.controls.part1, bankAccountNumberPart2)"
+               (keyup.backspace)="autoFocusPrev(parts.controls.part1, bankCodePart2)"
+               #bankAccountNumberPart1>
+        <span class="example-tel-input-spacer">&ndash;</span>
+        <input class="example-tel-input-element"
+               formControlName="part2"
+               maxLength="4"
+               size="4"
+               aria-label="Subscriber number"
+               (input)="_handleInput(parts.controls.part2, bankAccountNumberPart3)"
+               (keyup.backspace)="autoFocusPrev(parts.controls.part2, bankAccountNumberPart1)"
+               #bankAccountNumberPart2>
+        <span class="example-tel-input-spacer">&ndash;</span>
+        <input class="example-tel-input-element"
+               formControlName="part3"
+               maxLength="2"
+               size="2"
+               aria-label="Subscriber number"
+               (input)="_handleInput(parts.controls.part3)"
+               (keyup.backspace)="autoFocusPrev(parts.controls.part3, bankAccountNumberPart2)"
+               #bankAccountNumberPart3>
+    </div>
+</div>
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
